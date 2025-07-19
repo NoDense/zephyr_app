@@ -1,0 +1,16 @@
+
+
+
+&dma1 {
+    status="okay";
+};
+&dma2 {
+    status="okay";
+};
+
+&usart2 {
+	dmas = <&dma1 6 4 (STM32_DMA_PERIPH_TX) STM32_DMA_FIFO_FULL
+		&dma1 5 4 (STM32_DMA_MODE_CYCLIC | STM32_DMA_PERIPH_RX | STM32_DMA_MEM_8BITS) STM32_DMA_FIFO_FULL>;
+	dma-names = "tx", "rx";
+	fifo-enable;
+};
