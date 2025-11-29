@@ -183,7 +183,7 @@ int display_thread(void)
 
 	bar = lv_bar_create(lv_screen_active());
     lv_obj_set_size(bar, 100, 10);
-	lv_bar_set_value(bar, 80, LV_ANIM_OFF);
+	lv_bar_set_value(bar, 80, LV_ANIM_ON);
     lv_bar_set_mode(bar, LV_BAR_MODE_SYMMETRICAL);
 	lv_obj_align(bar, LV_ALIGN_TOP_MID, 0, 0);
 
@@ -200,7 +200,12 @@ int display_thread(void)
 		if ((count % 100) == 0U) {
 			sprintf(count_str, "%d", count/100U);
 			lv_label_set_text(count_label, count_str);
+            lv_bar_set_value(bar, 00, LV_ANIM_ON);
 		}
+        if (count % 50 == 0) {
+            lv_bar_set_value(bar, 100, LV_ANIM_ON);
+        }
+
 		lv_timer_handler();
 		++count;
 		k_sleep(K_MSEC(10));

@@ -1,25 +1,5 @@
 
 
-&dma1 {
-    status="okay";
-};
-&dma2 {
-    status="okay";
-};
-
-&usart2 {
-    current-speed = <921600>;
-	dmas = <&dma1 6 4 (STM32_DMA_PERIPH_TX) STM32_DMA_FIFO_FULL
-		&dma1 5 4 (STM32_DMA_MODE_CYCLIC | STM32_DMA_PERIPH_RX | STM32_DMA_MEM_8BITS) STM32_DMA_FIFO_FULL>;
-	dma-names = "tx", "rx";
-	fifo-enable;
-};
-
-&usart1 {
-    status="okay";
-};
-
-
 
 / {
 	chosen {
@@ -27,6 +7,7 @@
         zephyr,log-uart=&log_uarts;
         zephyr,console = &usart1;
         zephyr,shell-uart = &usart1;
+        zephyr,tracing-uart = &usart1;
 	};
 
     log_uarts: log_uart_node {
@@ -53,6 +34,28 @@
         };
     };
 };
+
+
+&dma1 {
+    status="okay";
+};
+&dma2 {
+    status="okay";
+};
+
+&usart1 {
+    pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
+    status="okay";
+};
+
+&usart2 {
+    current-speed = <921600>;
+	dmas = <&dma1 6 4 (STM32_DMA_PERIPH_TX) STM32_DMA_FIFO_FULL
+		&dma1 5 4 (STM32_DMA_MODE_CYCLIC | STM32_DMA_PERIPH_RX | STM32_DMA_MEM_8BITS) STM32_DMA_FIFO_FULL>;
+	dma-names = "tx", "rx";
+	fifo-enable;
+};
+
 
 &spi1{
     /delete-node/ ssd1306@0;
