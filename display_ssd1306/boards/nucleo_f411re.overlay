@@ -6,9 +6,9 @@
 		zephyr,display = &ssd1306_ssd1306_128x64_spi;
         zephyr,log-uart=&log_uarts;
         zephyr,console = &usart1;
-        zephyr,shell-uart = &usart1;
-        zephyr,tracing-uart = &usart1;
-	};
+        zephyr,shell-uart = <>;
+        zephyr,tracing-uart = <>;
+	};/*  */
 
     log_uarts: log_uart_node {
         compatible = "zephyr,log-uart";
@@ -29,7 +29,8 @@
             instrumentation_triggers: retention@0 {
                 compatible = "zephyr,retention";
                 status = "okay";
-                reg = <0x0 0x2000>;
+                reg = <0x0 0x20>;
+                prefix = [be ef];
             };
         };
     };

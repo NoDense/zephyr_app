@@ -54,7 +54,7 @@ int main(void)
         
 		led_state = !led_state;
 		LOG_INF("LED state: %s\n", led_state ? "ON" : "OFF");
-        led_send();
+        // led_send();
         adc_send();
 		k_msleep(SLEEP_TIME_MS);
 	}
@@ -200,7 +200,7 @@ int display_thread(void)
 		if ((count % 100) == 0U) {
 			sprintf(count_str, "%d", count/100U);
 			lv_label_set_text(count_label, count_str);
-            lv_bar_set_value(bar, 00, LV_ANIM_ON);
+            // lv_bar_set_value(bar, 00, LV_ANIM_ON);
 		}
         if (count % 50 == 0) {
             lv_bar_set_value(bar, 100, LV_ANIM_ON);
@@ -208,7 +208,7 @@ int display_thread(void)
 
 		lv_timer_handler();
 		++count;
-		k_sleep(K_MSEC(10));
+		k_sleep(K_MSEC(30));
 	}
 }
 
