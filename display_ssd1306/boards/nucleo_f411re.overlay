@@ -6,7 +6,7 @@
 		zephyr,display = &ssd1306_ssd1306_128x64_spi;
         zephyr,log-uart=&log_uarts;
         zephyr,console = &usart1;
-        zephyr,shell-uart = <>;
+        zephyr,shell-uart = &usart1;
         zephyr,tracing-uart = <>;
 	};/*  */
 
